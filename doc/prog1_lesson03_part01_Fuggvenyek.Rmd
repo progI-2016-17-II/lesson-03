@@ -1,0 +1,261 @@
+---
+title: "1. Függvények"
+subtitle: |
+  | Kurzus: Programozás I. 3. óra
+author: |
+  | Oktató: Balogh Kitti kttblgh@gmail.com
+date: "Időpont: 2017-02-28"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = '../')
+```
+
+## Vázlat
+
+- [Függvények haszna](#fuggvenyek-haszna)
+- [Függvények szerkezete](#fuggvenyek-szerkezete)
+- [Argumentumok](#argumentumok)
+- [Visszatérési érték](#visszateresi-ertek)
+- [Függvények környezete](#fuggvenyek-kornyezete)
+- [Függvények tesztelése](#fuggvenyek-tesztelese)
+- [Irodalom](#irodalom)
+
+## Függvények haszna
+- ha ugyanazt a kódrészletet többször futtatjuk, érdemes függvényt írni rá, ezzel kerülve a redundanciát
+- átláthatóbbá, olvashatóbbá teszi a kódot
+- egyszerűbbé teszi a használatot
+
+## Függvények szerkezete
+- ```function``` függvény használatával definiáljuk a saját függvényeket
+- a függvényt egy objektumhoz rendeljük hozzá, ez lesz a függvény neve
+- tehát R-ben a függvények maguk is objektumok
+- a ```function``` függvény argumentumaival adjuk meg a saját függvényünk argumentumait (ez lehet üres zárójel is, ha nincsenek argumentumaink)
+- a függvény testét kapcsos zárójeleken belül írjuk, ez az a kód, amit lefuttatunk a függvény meghívásakor
+- amikor csak egy soros a function body, nem kötelező kapcsos zárójelet írni, de ez ritka eset
+- figyeljünk rá, hogy szépen indenteljük a body-t (anélkül is lefut, csak ronda és nehezen olvasható)
+
+```{r, echo = TRUE}
+#----Függvények szerkezete R-ben------------------------------------------------
+my_function <- function(arg1, arg2) {
+  body
+}
+```
+
+## Argumentumok
+- az argumentumokat változóként használhatjuk a függvényeken belül
+- függvényen belüli értéküket meg lehet adni pozíció vagy név szerint
+- vannak default argumentumok, amik rendelkeznek default értékkel
+- ha nem határozzuk meg egy default argumentum értékét, akkor a default értékét fogja venni
+- ha nem határozzuk egy nem default argumentum értéket, akkor hibát fog dobni
+- default érték lehet NA, logikai, karakter, numerikus vagy bármilyen R objektum
+
+```{r, echo = TRUE, error = TRUE}
+#----Argumentumok---------------------------------------------------------------
+# A függvények az src/prog1_lesson03_part01_functions.R és 
+# src/prog1_lesson03_part01_functions2.R fájlokban, a függvények használata 
+# az src/prog1_lesson03_part01_Fuggvenyek.R fájlban találhatók
+
+## Hello, World! függvény
+# függvény argumentum nélkül
+# print: kiírja az argumentumát
+say_hello <- function() {
+  print("Hello, World!")
+}
+
+say_hello()
+
+# a kapcsos zárójel elhagyható
+say_hello_v1 <- function() print("Hello, World!")
+say_hello_v1()
+
+## Hello, XY! függvény
+# az előző függvényt bővítve hozzáadunk egy argumentumot
+# paste0: összekapcsolja az argumentumként megadott objektumokat egy karakterbe,
+# paste vs paste0: paste0 az argumentumok közé nem tesz space-t
+hello_person <- function(name) {
+  print(paste0("Hello, ", name, "!"))
+}
+
+hello_person("Krumpli")
+
+## Exponenciális függvény
+# y default argumentum: van default értéke
+# default argumentum értéke lehet NA, logikai, karakter, numerikus vagy 
+# bármilyen R objektum
+exponent <- function(x, y = 2) {
+  x ^ y 
+}
+
+# argumentumok megadása névvel
+exponent(x = 2, y = 3)
+# argumentumok megadása név nélkül, pozíció szerint
+exponent(2, 3)
+# argumentumok megadása keverve névvel és pozícióval
+exponent(x = 2, 3)
+exponent(2, y = 3)
+# argumentumok megadása névvel tetszőleges sorrendben
+exponent(y = 3, x = 2)
+# argumentumok megadása név nélkül tetszőleges sorrendben
+# nem úgy működik, mint az előző
+# pozíció szerint fogja venni az értékeket
+exponent(3, 2)
+# csak default argumentum megadása
+# nem működik, x-nek muszáj értéket megadnunk
+exponent(y = 3)
+# csak x argumentum megadása
+# működik, y-nál a default értéket veszi
+exponent(x = 2)
+# csak egy érték megadása
+# a megadott értéket x értékének fogja venni, mert annak nincs default értéke
+# y-nál a default értéket veszi
+exponent(2)
+```
+
+## Visszatérési érték
+- a függvényeket általában azzal a céllal írjuk, hogy kiszámoltassunk velük valamilyen értéket vagy módosítsunk egy objektumot
+- a függvény ezzel a kiszámolt értékkel, módosított objektummal tér vissza
+- ez két módon működik R-ben:
+    1. a függvény az utolsó sorban lévő értékkel tér vissza
+    2. a ```return``` függvénnyel specifikáljuk, hogy mivel térjen vissza a függvény
+- nincs egységes irányelv arra, hogy melyiket használjuk
+- rövid, átlátható függvényeknél nem igazán szoktak ```return```-ölni
+- alapjában véve nem szükséges használni a ```return```-t, sokan azért szeretik használni, mert explicitebb, hogy mi a visszatérési érték
+- ellenérv szokott lenni, hogy a ```return``` miatt a függvény futási ideje hosszabb, hiszen egy plusz függvényt futtatunk benne, ez azonban elenyésző, ha nem annyira rövid a függvényünk
+- a ```return``` arra kényszeríti a függvényt, hogy megálljon a számításban és visszatérjen a megadott értékkel
+
+```{r, echo = TRUE, error = TRUE}
+#----Visszatérési érték---------------------------------------------------------
+exponent(2, 4)
+
+# hatvány függvény return-nel
+exponent_v1 <- function(x, y = 2) {
+  return(x ^ y) 
+}
+
+exponent_v1(2, 4)
+
+# plusz számítás a return után
+# ezt a return utáni részt már nem hajtja végre a függvény
+exponent_v2 <- function(x, y = 2) {
+  return(x ^ y)
+  x + 2
+}
+
+exponent_v2(2, 4)
+
+# ha nem specifikáljuk a visszatérési értéket, az utolsó sort hajtja végre
+exponent_v3 <- function(x, y = 2) {
+  x ^ y
+  x + 2
+}
+
+exponent_v3(2, 4)
+
+# mindkét lépés végrehajtása
+exponent_v4 <- function(x, y = 2) {
+  e <- x ^ y
+  e + 2
+}
+
+exponent_v4(2, 4)
+```
+
+## Függvények környezete
+- a függvények is objektumok
+- a függvényeknek az argumentumokon és a függvénytesten túl környezetük is van
+- amikor megírunk egy függvényt, azzal létrehozzuk a saját környezetét, amiben működik
+- a függvényeknek ezt a környezetét az argumentumokkal építjük fel
+- a függvény futásánál először az argumentumokban kezd el keresni a függvény, azok alapján próbálja értelmezni az objektumokat
+- ha ott nem talál valamit, akkor továbblép a globális környezetbe és ott keres
+- ha ott sem talál semmit, hibát kapunk
+
+```{r, echo = TRUE, error = TRUE}
+#----Függvények környezete------------------------------------------------------
+# függvény argumentumai
+formals(exponent)
+# függvény body
+body(exponent)
+# függvény környezete
+environment(exponent)
+
+# nincs megszabva x sem a függvény környezetében, sem a globális környezetben
+exponent(y = 3)
+
+# megszabjuk x-et a globális környezetben
+z <- 2
+exponent(z, y = 3)
+
+# megadjuk x-et az argumentummal
+exponent(x = 5, y = 3)
+
+# most meg van szabva x a globális környezetben
+# és megszabjuk az x argumentummal is
+exponent_v5 <- function(x = 5, y = 2) {
+  x ^ y 
+}
+exponent_v5(y = 3)
+```
+
+## Függvények tesztelése
+- a függvények viselkedésével kapcsolatban vannak bizonyos elvárásaink, amiket érdemes tesztelni, mielőtt elkönyveljük, hogy működik a megírt függvényünk
+- a függvények tesztelése azért jó dolog, mert:
+    - kevesebb bug lesz a függvényben, ha tisztában vagyunk vele, hogy miket kell teljesítenie
+    - jobb lesz a kódstruktúra, ugyanis a teszteléshez általában jobban el kell izolálni a függvényeket
+    - könnyebb folytatni a kódírást, ahonnan abbahagytuk, a tesztek megmutatják, hol kell még javítani
+- a teszteléshez a [```testthat```](https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf){target="_blank"} package-et fogjuk használni
+
+```{r testthat, echo = TRUE, error = TRUE}
+#----Függvények tesztelése------------------------------------------------------
+# testthat package installálása, behívása 
+if (!("testthat" %in% installed.packages())) {
+  install.packages("testthat", dependencies = T)
+}
+library(testthat)
+
+# függvények behívása
+source("src/prog1_lesson03_part01_functions.R")
+
+## Test function say_hello
+test_that("say_hello prints 'Hello, World!'", {
+  expect_output(say_hello(), "Hello, World!")
+  expect_is(say_hello(), "character")
+})
+
+## Test function hello_person
+test_that(
+  "hello_person prints 'Hello, name!' for character type name argument", {
+  expect_output(hello_person(name = "A"), "Hello, A!")
+  expect_is(hello_person(name = "A"), "character")
+  expect_error(hello_person(name = A))
+})
+
+## Test function exponent
+test_that("exponent raises x to the power of y", {
+  expect_equal(exponent(3, 3), 27)
+  expect_equal(exponent(x = 2, y = 3), 8)
+  expect_error(exponent(y = 4))
+})
+
+test_that("exponent raises x to the power of 2 if y isn't specified", {
+  expect_equal(exponent(3), 9)
+  expect_equal(exponent(x = 4), 16)
+  expect_error(exponent(y = 4))
+})
+
+test_that("exponent gives NA if x or y is NA", {
+  expect_equal(exponent(NA), NA_integer_)
+  expect_equal(exponent(NA, NA), NA_integer_)
+  expect_equal(exponent(3, NA), NA_integer_)
+})
+
+test_that("exponent works with numeric type arguments", {
+  expect_is(exponent(x = 2, y = 3), "numeric")
+  expect_error(exponent("a"))
+  expect_equal(exponent(factor("a")), NA)
+  expect_equal(exponent(TRUE), 1)
+})
+
+```
