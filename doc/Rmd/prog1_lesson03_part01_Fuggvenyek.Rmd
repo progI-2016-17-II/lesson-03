@@ -10,7 +10,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_knit$set(root.dir = '../')
+knitr::opts_knit$set(root.dir = '../../')
 ```
 
 ## Vázlat
@@ -70,7 +70,7 @@ my_function <- function(arg1, arg2) {
 #----Argumentumok---------------------------------------------------------------
 # A függvények az src/prog1_lesson03_part01_functions.R és 
 # src/prog1_lesson03_part01_functions2.R fájlokban, a függvények használata 
-# az src/prog1_lesson03_part01_Fuggvenyek.R fájlban találhatók
+# az src/prog1_lesson03_part01_use_functions.R fájlban találhatók
 
 ## Hello, World! függvény
 # függvény argumentum nélkül

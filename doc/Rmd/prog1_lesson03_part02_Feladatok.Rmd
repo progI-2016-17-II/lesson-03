@@ -1,0 +1,84 @@
+---
+title: "2. Feladatok"
+subtitle: |
+  | Kurzus: Programozás I. 3. óra
+author: |
+  | Oktató: Balogh Kitti kttblgh@gmail.com
+date: "Időpont: 2017-02-28"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+---
+
+## I. Feladat
+1. A ```lesson-03``` projekt ```src``` mappájában nyiss egy új R szkriptet ```prog1_lesson03_part02_functions.R``` néven! A következő feladatokban megírandó függvényeket ebbe a szkriptbe írd!
+2. A ```lesson-03``` projekt ```src``` mappájában nyiss egy új R szkriptet ```prog1_lesson03_part02_use_functions.R``` néven! A függvények használatát ebbe a szkriptbe írd!
+3. A ```prog1_lesson03_part02_use_functions.R``` szkriptben csinálj kikommentelt fejlécet is, amiben megadod a következőket: 
+    - fájl címe (Feladatok)
+    - kurzus neve (Programozás I.)
+    - óra sorszáma (3. óra)
+    - neved
+    - dátum (2017-02-28)
+4. Figyelj, hogy kommentelj, és minél jobban betartsd a R kódírási stílusra vonatkozó irányelveket!
+
+---
+
+## II. Feladat
+1. Írj egy függvényt az ```src/prog1_lesson03_part01_functions.R``` fájlban lévő ```hello_person``` függvényből kiindulva ```greet_person``` néven. A függvénynek legyen 2 argumentuma, a köszöntés és a név. A köszöntés argumentum neve legyen ```greeting```, a név argumentumé ```name```.
+2. A függvény célja, hogy kiprintelje az argumentumokat "greeting, name!!!" köszöntés formájában.
+3. A ```greeting``` és a ```name``` is legyen default argumentum. A ```greeting``` default értéke legyen "Hello", a ```name``` default értéke "World".
+4. Írj teszteket a most írt függvényhez a ```tests``` mappában ```test-prog1_lesson03_part02_greet_person.R``` néven!
+5. Próbáld ki a függvényt a saját neveddel, tetszőleges köszöntéssel!
+
+---
+
+## III. Feladat
+1. Az előző feladatban készített függvényből kiindulva írj egy ```greet_person_random``` függvényt.
+2. A függvény célja, hogy a ```greeting``` és a ```name``` értékét random válassza ki egy köszöntéseket, illetve egy neveket tartalmazó vektorból, majd kiprintelje a választott köszöntést és nevet "greeting, name!" formában.
+3. A függvénynek két argumentuma legyen, a ```greeting``` és a ```name```. Egyiknek se legyen default értéke.
+4. A köszöntések vektorában ezek szerepeljenek:
+    - Hello
+    - Hi
+    - Good morning
+    - Yo
+    - Whattup
+    - How's it goin'
+    - Hey
+    - Goodbye
+5. A nevek vektorában ezek szerepeljenek:
+    - World
+    - Mom
+    - Miss Crabtree
+    - Adrian
+    - G
+    - Dude
+    - Jude
+    - Mr. Chips
+6. A véletlen kiválasztást a ```sample``` függvénnyel végezd!
+7. Próbáld ki háromszor a függvényt argumentumok megadása nélkül és nézd meg, miket kapsz!
+
+---
+
+## IV. Feladat
+1. Írj egy függvényt az ```src/prog1_lesson03_part01_functions.R``` fájlban lévő ```exponent``` függvényből kiindulva ```exponent_add``` néven, aminek három argumentuma legyen, ```x```, ```y``` és ```z```.
+2. A függvény célja, hogy ```x```-nek vegye az ```y```-dik hatványát, majd megszorozza ```z```-vel. Ezután printelje ki az eredményt a következő formában: "x raised to the power y and multiplied by z. The result is eredmény."
+3. ```x```-nek, ```y```-nak és ```z```-nek is legyen 2 a default értéke.
+4. Próbáld ki a függvényt úgy, hogy csak az ```x``` értékét adod meg. Ez legyen 5.
+5. Próbáld ki a függvényt úgy, hogy csak az ```z``` értékét adod meg. Ez legyen 10.
+6. Próbáld ki a függvényt úgy, hogy minden értéket megadsz. Sorrendben legyenek az értékek 4, 5 és 6.
+
+---
+
+## V. Feladat
+1. Írj egy függvényt ```dice``` néven, ami egy dobókocka dobálását szimulálja. A függvénynek legyen egy ```side_number``` nevű argumentuma, ami a dobókocka oldalainak számát jelenti.
+2. A függvény célja, hogy véletlenszerűen kiválasszon egy számot a dobókocka oldalainak száma alapján, majd kiírja, hogy a "A dobott érték x."
+3. A ```side_number``` default értéke legyen 6.
+4. Dobj egyet egy 7 oldalú kockával!
+5. Dobj egyet egy 12 oldalú kockával!
+6. Dobj egyet egy 6 oldalú kockával!
+
+---
