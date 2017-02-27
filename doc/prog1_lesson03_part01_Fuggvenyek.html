@@ -172,6 +172,10 @@ my_function &lt;- function(arg1, arg2) {
 <li>default érték lehet NA, logikai, karakter, numerikus vagy bármilyen R objektum</li>
 </ul>
 <pre class="r"><code>#----Argumentumok---------------------------------------------------------------
+# A függvények az src/prog1_lesson03_part01_functions.R és 
+# src/prog1_lesson03_part01_functions2.R fájlokban, a függvények használata 
+# az src/prog1_lesson03_part01_Fuggvenyek.R fájlban találhatók
+
 ## Hello, World! függvény
 # függvény argumentum nélkül
 # print: kiírja az argumentumát
@@ -182,8 +186,8 @@ say_hello &lt;- function() {
 say_hello()</code></pre>
 <pre><code>## [1] &quot;Hello, World!&quot;</code></pre>
 <pre class="r"><code># a kapcsos zárójel elhagyható
-say_hello &lt;- function() print(&quot;Hello, World!&quot;)
-say_hello()</code></pre>
+say_hello_v1 &lt;- function() print(&quot;Hello, World!&quot;)
+say_hello_v1()</code></pre>
 <pre><code>## [1] &quot;Hello, World!&quot;</code></pre>
 <pre class="r"><code>## Hello, XY! függvény
 # az előző függvényt bővítve hozzáadunk egy argumentumot
@@ -255,37 +259,37 @@ exponent(2)</code></pre>
 <pre class="r"><code>#----Visszatérési érték---------------------------------------------------------
 exponent(2, 4)</code></pre>
 <pre><code>## [1] 16</code></pre>
-<pre class="r"><code># exponenciális függvény return-nel
-exponent &lt;- function(x, y = 2) {
+<pre class="r"><code># hatvány függvény return-nel
+exponent_v1 &lt;- function(x, y = 2) {
   return(x ^ y) 
 }
 
-exponent(2, 4)</code></pre>
+exponent_v1(2, 4)</code></pre>
 <pre><code>## [1] 16</code></pre>
 <pre class="r"><code># plusz számítás a return után
 # ezt a return utáni részt már nem hajtja végre a függvény
-exponent &lt;- function(x, y = 2) {
+exponent_v2 &lt;- function(x, y = 2) {
   return(x ^ y)
   x + 2
 }
 
-exponent(2, 4)</code></pre>
+exponent_v2(2, 4)</code></pre>
 <pre><code>## [1] 16</code></pre>
 <pre class="r"><code># ha nem specifikáljuk a visszatérési értéket, az utolsó sort hajtja végre
-exponent &lt;- function(x, y = 2) {
+exponent_v3 &lt;- function(x, y = 2) {
   x ^ y
   x + 2
 }
 
-exponent(2, 4)</code></pre>
+exponent_v3(2, 4)</code></pre>
 <pre><code>## [1] 4</code></pre>
 <pre class="r"><code># mindkét lépés végrehajtása
-exponent &lt;- function(x, y = 2) {
+exponent_v4 &lt;- function(x, y = 2) {
   e &lt;- x ^ y
   e + 2
 }
 
-exponent(2, 4)</code></pre>
+exponent_v4(2, 4)</code></pre>
 <pre><code>## [1] 18</code></pre>
 </div>
 <div id="fuggvenyek-kornyezete" class="section level2">
@@ -300,11 +304,6 @@ exponent(2, 4)</code></pre>
 <li>ha ott sem talál semmit, hibát kapunk</li>
 </ul>
 <pre class="r"><code>#----Függvények környezete------------------------------------------------------
-# Exponenciális függvény, y default értéke 2
-exponent &lt;- function(x, y = 2) {
-  x ^ y 
-}
-
 # függvény argumentumai
 formals(exponent)</code></pre>
 <pre><code>## $x
@@ -332,10 +331,10 @@ exponent(x = 5, y = 3)</code></pre>
 <pre><code>## [1] 125</code></pre>
 <pre class="r"><code># most meg van szabva x a globális környezetben
 # és megszabjuk az x argumentummal is
-exponent &lt;- function(x = 5, y = 2) {
+exponent_v5 &lt;- function(x = 5, y = 2) {
   x ^ y 
 }
-exponent(y = 3)</code></pre>
+exponent_v5(y = 3)</code></pre>
 <pre><code>## [1] 125</code></pre>
 </div>
 <div id="fuggvenyek-tesztelese" class="section level2">
@@ -351,14 +350,14 @@ exponent(y = 3)</code></pre>
 <li>a teszteléshez a <a href="https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf" target="_blank"><code>testthat</code></a> package-et fogjuk használni</li>
 </ul>
 <pre class="r"><code>#----Függvények tesztelése------------------------------------------------------
+# A függvények az src/prog1_lesson03_part01_functions.R fájlban, a tesztelés
+# a tests/test-prog1_lesson03_part01_functions.R fájlban találhatók
+
 # testthat package installálása, behívása 
 if (!(&quot;testthat&quot; %in% installed.packages())) {
   install.packages(&quot;testthat&quot;, dependencies = T)
 }
 library(testthat)
-
-# függvények behívása
-source(&quot;src/lesson03_functions.R&quot;)
 
 ## Test function say_hello
 test_that(&quot;say_hello prints 'Hello, World!'&quot;, {

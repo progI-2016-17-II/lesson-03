@@ -209,14 +209,14 @@ exponent_v5(y = 3)
 
 ```{r testthat, echo = TRUE, error = TRUE}
 #----Függvények tesztelése------------------------------------------------------
+# A függvények az src/prog1_lesson03_part01_functions.R fájlban, a tesztelés
+# a tests/test-prog1_lesson03_part01_functions.R fájlban találhatók
+
 # testthat package installálása, behívása 
 if (!("testthat" %in% installed.packages())) {
   install.packages("testthat", dependencies = T)
 }
 library(testthat)
-
-# függvények behívása
-source("src/prog1_lesson03_part01_functions.R")
 
 ## Test function say_hello
 test_that("say_hello prints 'Hello, World!'", {
