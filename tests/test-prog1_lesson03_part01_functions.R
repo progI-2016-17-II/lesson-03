@@ -3,7 +3,7 @@ if (!("testthat" %in% installed.packages())) {
   install.packages("testthat", dependencies = T)
 }
 library(testthat)
-source("src/lesson03_functions.R")
+source("src/prog1_lesson03_part01_functions.R")
 
 #----Test function say_hello----------------------------------------------------
 test_that("say_hello prints 'Hello, World!'", {
