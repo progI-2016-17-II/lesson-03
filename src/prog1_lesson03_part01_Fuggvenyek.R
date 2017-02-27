@@ -5,10 +5,12 @@
 # 2017-02-28         #
 ######################
 
-#----Argumentumok---------------------------------------------------------------
-## függvények behívása
+#----Függvények helye a fájlstruktúránkban--------------------------------------
+# függvények behívása
 source("src/prog1_lesson03_part01_functions.R")
 source("src/prog1_lesson03_part01_functions2.R")
+
+#----Argumentumok---------------------------------------------------------------
 
 ### Hello, World! függvény
 # függvény argumentum nélkül

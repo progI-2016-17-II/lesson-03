@@ -129,11 +129,13 @@ $(document).ready(function () {
 <h2>Vázlat</h2>
 <ul>
 <li><a href="#fuggvenyek-haszna">Függvények haszna</a></li>
+<li><a href="#fuggvenyek-helye-a-fajlstrukturankban">Függvények helye a fájlstruktúránkban</a></li>
 <li><a href="#fuggvenyek-szerkezete">Függvények szerkezete</a></li>
 <li><a href="#argumentumok">Argumentumok</a></li>
 <li><a href="#visszateresi-ertek">Visszatérési érték</a></li>
 <li><a href="#fuggvenyek-kornyezete">Függvények környezete</a></li>
 <li><a href="#fuggvenyek-tesztelese">Függvények tesztelése</a></li>
+<li><a href="a-tesztek-helye-a-fajlstrukturankban">A tesztek helye a fájlstruktúránkban</a></li>
 <li><a href="#irodalom">Irodalom</a></li>
 </ul>
 </div>
@@ -144,6 +146,18 @@ $(document).ready(function () {
 <li>átláthatóbbá, olvashatóbbá teszi a kódot</li>
 <li>egyszerűbbé teszi a használatot</li>
 </ul>
+</div>
+<div id="fuggvenyek-helye-a-fajlstrukturankban" class="section level2">
+<h2>Függvények helye a fájlstruktúránkban</h2>
+<ul>
+<li>a függvényeket az src mappában fogjuk elhelyezni egy elszeparált R szkriptben</li>
+<li>amikor szükségünk van valamilyen függvényre, a package-ekhez hasonlóan hívjuk be a szkriptet</li>
+<li>R szkriptet a <code>source</code> függvénnyel tudunk behívni</li>
+</ul>
+<pre class="r"><code>#----Függvények helye a fájlstruktúránkban--------------------------------------
+# függvények behívása
+source(&quot;src/prog1_lesson03_part01_functions.R&quot;)
+source(&quot;src/prog1_lesson03_part01_functions2.R&quot;)</code></pre>
 </div>
 <div id="fuggvenyek-szerkezete" class="section level2">
 <h2>Függvények szerkezete</h2>
@@ -349,6 +363,13 @@ exponent_v5(y = 3)</code></pre>
 </ul></li>
 <li>a teszteléshez a <a href="https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf" target="_blank"><code>testthat</code></a> package-et fogjuk használni</li>
 </ul>
+</div>
+<div id="a-tesztek-helye-a-fajlstrukturankban" class="section level2">
+<h2>A tesztek helye a fájlstruktúránkban</h2>
+<ul>
+<li>a teszteket egy tests nevű mappába tegyük elkülönítve</li>
+<li>a teszt szkriptek neve kezdődjön a test szóval, és valahogyan jelezze, hogy melyik függvényt vagy melyik fájlban lévő függvényeket teszteli</li>
+</ul>
 <pre class="r"><code>#----Függvények tesztelése------------------------------------------------------
 # A függvények az src/prog1_lesson03_part01_functions.R fájlban, a tesztelés
 # a tests/test-prog1_lesson03_part01_functions.R fájlban találhatók
@@ -398,6 +419,14 @@ test_that(&quot;exponent works with numeric type arguments&quot;, {
   expect_equal(exponent(factor(&quot;a&quot;)), NA)
   expect_equal(exponent(TRUE), 1)
 })</code></pre>
+</div>
+<div id="irodalom" class="section level2">
+<h2>Irodalom</h2>
+<ul>
+<li>Lander 8.1-8.3</li>
+<li>Matloff 7.3-7.6</li>
+<li><a href="https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf" target="_blank"><code>testthat</code></a></li>
+</ul>
 </div>
 
 

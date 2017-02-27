@@ -16,17 +16,31 @@ knitr::opts_knit$set(root.dir = '../')
 ## Vázlat
 
 - [Függvények haszna](#fuggvenyek-haszna)
+- [Függvények helye a fájlstruktúránkban](#fuggvenyek-helye-a-fajlstrukturankban)
 - [Függvények szerkezete](#fuggvenyek-szerkezete)
 - [Argumentumok](#argumentumok)
 - [Visszatérési érték](#visszateresi-ertek)
 - [Függvények környezete](#fuggvenyek-kornyezete)
 - [Függvények tesztelése](#fuggvenyek-tesztelese)
+- [A tesztek helye a fájlstruktúránkban](a-tesztek-helye-a-fajlstrukturankban)
 - [Irodalom](#irodalom)
 
 ## Függvények haszna
 - ha ugyanazt a kódrészletet többször futtatjuk, érdemes függvényt írni rá, ezzel kerülve a redundanciát
 - átláthatóbbá, olvashatóbbá teszi a kódot
 - egyszerűbbé teszi a használatot
+
+## Függvények helye a fájlstruktúránkban
+- a függvényeket az src mappában fogjuk elhelyezni egy elszeparált R szkriptben
+- amikor szükségünk van valamilyen függvényre, a package-ekhez hasonlóan hívjuk be a szkriptet
+- R szkriptet a ```source``` függvénnyel tudunk behívni
+
+```{r, echo = TRUE}
+#----Függvények helye a fájlstruktúránkban--------------------------------------
+# függvények behívása
+source("src/prog1_lesson03_part01_functions.R")
+source("src/prog1_lesson03_part01_functions2.R")
+```
 
 ## Függvények szerkezete
 - ```function``` függvény használatával definiáljuk a saját függvényeket
@@ -207,6 +221,10 @@ exponent_v5(y = 3)
     - könnyebb folytatni a kódírást, ahonnan abbahagytuk, a tesztek megmutatják, hol kell még javítani
 - a teszteléshez a [```testthat```](https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf){target="_blank"} package-et fogjuk használni
 
+## A tesztek helye a fájlstruktúránkban
+- a teszteket egy tests nevű mappába tegyük elkülönítve
+- a teszt szkriptek neve kezdődjön a test szóval, és valahogyan jelezze, hogy melyik függvényt vagy melyik fájlban lévő függvényeket teszteli
+
 ```{r testthat, echo = TRUE, error = TRUE}
 #----Függvények tesztelése------------------------------------------------------
 # A függvények az src/prog1_lesson03_part01_functions.R fájlban, a tesztelés
@@ -259,3 +277,8 @@ test_that("exponent works with numeric type arguments", {
 })
 
 ```
+
+## Irodalom
+- Lander 8.1-8.3
+- Matloff 7.3-7.6
+- [```testthat```](https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf){target="_blank"}

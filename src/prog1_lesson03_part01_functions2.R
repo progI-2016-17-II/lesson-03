@@ -1,7 +1,7 @@
 #----src/prog1_lesson03_part01_functions.R függvényeinek alternatívái-----------
 
 # egysoros függvények esetében a kapcsos zárójel elhagyható
-say_hello <- function() print("Hello, World!")
+say_hello_v1 <- function() print("Hello, World!")
 
 # hatvány függvény return-nel
 exponent_v1 <- function(x, y = 2) {
