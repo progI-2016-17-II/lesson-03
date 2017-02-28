@@ -6,13 +6,13 @@
 
 ---
 
-## Lesson 02 Description
+## Lesson 03 Description
 
 Learn about functions.
 
 ---
 
-## Lesson 02 Content
+## Lesson 03 Content
 
 * Part 1
 	* Advantages of functions
