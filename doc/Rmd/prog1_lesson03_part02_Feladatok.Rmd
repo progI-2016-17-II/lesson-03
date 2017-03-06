@@ -38,8 +38,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## III. Feladat
 1. Az előző feladatban készített függvényből kiindulva írj egy ```greet_person_random``` függvényt.
-2. A függvény célja, hogy a ```greeting``` és a ```name``` értékét random válassza ki egy köszöntéseket, illetve egy neveket tartalmazó vektorból, majd kiprintelje a választott köszöntést és nevet "greeting, name!" formában.
-3. A függvénynek két argumentuma legyen, a ```greeting``` és a ```name```. Egyiknek se legyen default értéke.
+2. A függvény célja, hogy egy köszöntéseket, illetve egy neveket tartalmazó vektorból random kiválasszon 1-1 elemet, majd kiprintelje a választott köszöntést és nevet "köszöntés, név!" formában.
+3. A függvénynek ne legyen argumentuma.
 4. A köszöntések vektorában ezek szerepeljenek:
     - Hello
     - Hi
@@ -59,7 +59,7 @@ knitr::opts_chunk$set(echo = TRUE)
     - Jude
     - Mr. Chips
 6. A véletlen kiválasztást a ```sample``` függvénnyel végezd!
-7. Próbáld ki háromszor a függvényt argumentumok megadása nélkül és nézd meg, miket kapsz!
+7. Próbáld ki háromszor a függvényt és nézd meg, miket kapsz!
 
 ---
 
